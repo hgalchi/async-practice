@@ -16,4 +16,22 @@ public class AsyncService {
     }
 
 
+    @Async
+    public CompletableFuture run() {
+        return CompletableFuture.completedFuture(nonBlockingMethod());
+    }
+
+    public String nonBlockingMethod(){
+        for (int i = 0; i < 10; i++) {
+            try {
+                System.out.println(Thread.currentThread().getName()+"thread sleep...");
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                System.out.println("Thread interruptedException");
+            }
+
+        }
+        System.out.println("wake up!!");
+        return "asyncMethod done";
+    }
 }

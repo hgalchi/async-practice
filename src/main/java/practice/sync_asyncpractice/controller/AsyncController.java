@@ -18,5 +18,11 @@ public class AsyncController {
         }
     }
 
-
+    @GetMapping("/async-nonBlocking")
+    public String asyncNonBlocking() {
+        System.out.println("init completableFuture");
+        asyncService.run();
+        System.out.println("done");
+        return "end";
+    }
 }
